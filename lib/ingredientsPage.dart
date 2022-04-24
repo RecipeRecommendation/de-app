@@ -139,7 +139,7 @@ class _IngredientsPageState extends State<IngredientsPage> {
                 FadeAnimatedText(
                   'Detecting Ingredients',
                   textStyle: const TextStyle(
-                    fontSize: 45.0,
+                    fontSize: 42.0,
                   ),
                   textAlign: TextAlign.center,
                   duration: const Duration(milliseconds: 1500),

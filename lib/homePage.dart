@@ -37,90 +37,92 @@ class _HomePageState extends State<HomePage> {
     final animationWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
-        body: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SizedBox(
-              width: animationWidth,
-              height: 200.0,
-              child: Container(
-                // alignment: Alignment.center,
-                margin: const EdgeInsets.only(
-                  top: 100.0,
-                  left: 30.0,
-                  right: 30.0
-                ),
-                child: DefaultTextStyle(
-                  style: TextStyle(
-                    fontSize: 43.0,
-                    fontFamily: 'WorkSans',
-                    color: Colors.blue.shade800,
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                width: animationWidth,
+                height: 200.0,
+                child: Container(
+                  // alignment: Alignment.center,
+                  margin: const EdgeInsets.only(
+                    top: 100.0,
+                    left: 30.0,
+                    right: 30.0
                   ),
-                  child: AnimatedTextKit(
-                    pause: const Duration(milliseconds: 500),
-                    animatedTexts: [
-                      FadeAnimatedText(
-                        'Hello Darshan!',
-                        textStyle: const TextStyle(
-                          fontSize: 45.0,
+                  child: DefaultTextStyle(
+                    style: TextStyle(
+                      fontSize: 43.0,
+                      fontFamily: 'WorkSans',
+                      color: Colors.blue.shade800,
+                    ),
+                    child: AnimatedTextKit(
+                      pause: const Duration(milliseconds: 500),
+                      animatedTexts: [
+                        FadeAnimatedText(
+                          'Hello Darshan!',
+                          textStyle: const TextStyle(
+                            fontSize: 45.0,
 
+                          ),
+                          duration: const Duration(milliseconds: 3000),
                         ),
-                        duration: const Duration(milliseconds: 3000),
-                      ),
-                      FadeAnimatedText(
-                        'Welcome To..',
-                        textStyle: const TextStyle(
-                          fontSize: 37.0
+                        FadeAnimatedText(
+                          'Welcome To..',
+                          textStyle: const TextStyle(
+                            fontSize: 37.0
+                          ),
+                          duration: const Duration(milliseconds: 2000),
                         ),
-                        duration: const Duration(milliseconds: 2000),
-                      ),
-                      TypewriterAnimatedText(
-                        'Recipe Recommender ',
-                        speed: const Duration(milliseconds: 100),
-                      ),
-                    ],
-                    repeatForever: true,
+                        TypewriterAnimatedText(
+                          'Recipe Recommender ',
+                          speed: const Duration(milliseconds: 100),
+                        ),
+                      ],
+                      repeatForever: true,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(
-                top: 55.0,
-                left: 20.0,
-                right: 20.0,
+              Container(
+                margin: const EdgeInsets.only(
+                  top: 55.0,
+                  left: 20.0,
+                  right: 20.0,
+                ),
+                child: SizedBox(
+                  height: 190.0,
+                  width: MediaQuery.of(context).size.width,
+                  child: getRecipeCard(),
+                ),
               ),
-              child: SizedBox(
-                height: 190.0,
-                width: MediaQuery.of(context).size.width,
-                child: getRecipeCard(),
+              Container(
+                margin: const EdgeInsets.only(
+                  top: 10.0,
+                  left: 20.0,
+                  right: 20.0,
+                ),
+                child: SizedBox(
+                  height: 190.0,
+                  width: MediaQuery.of(context).size.width,
+                  child: getIngredientsCard(),
+                ),
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(
-                top: 10.0,
-                left: 20.0,
-                right: 20.0,
+              Container(
+                margin: const EdgeInsets.only(
+                  top: 10.0,
+                  left: 20.0,
+                  right: 20.0,
+                ),
+                child: SizedBox(
+                  height: 190.0,
+                  width: MediaQuery.of(context).size.width,
+                  child: getSelfOrderCard(),
+                ),
               ),
-              child: SizedBox(
-                height: 190.0,
-                width: MediaQuery.of(context).size.width,
-                child: getIngredientsCard(),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(
-                top: 10.0,
-                left: 20.0,
-                right: 20.0,
-              ),
-              child: SizedBox(
-                height: 190.0,
-                width: MediaQuery.of(context).size.width,
-                child: getSelfOrderCard(),
-              ),
-            ),
-          ],
+            ],
+          ),
         )
 
     );
