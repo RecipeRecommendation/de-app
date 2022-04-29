@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:de_app/globals.dart' as globals;
 
-
 // void main() {
 //   runApp(const MyApp());
 // }
@@ -26,25 +25,28 @@ import 'package:de_app/globals.dart' as globals;
 // }
 
 class CollaborativeRecipeSuggestion extends StatefulWidget {
-  const CollaborativeRecipeSuggestion ({Key? key}) : super(key: key);
+  const CollaborativeRecipeSuggestion({Key? key}) : super(key: key);
 
   @override
-  State<CollaborativeRecipeSuggestion> createState() => _CollaborativeRecipeSuggestionState();
+  State<CollaborativeRecipeSuggestion> createState() =>
+      _CollaborativeRecipeSuggestionState();
 }
 
-enum ButtonState  {loading, done}
+enum ButtonState { loading, done }
 
-class _CollaborativeRecipeSuggestionState extends State<CollaborativeRecipeSuggestion> {
-
+class _CollaborativeRecipeSuggestionState
+    extends State<CollaborativeRecipeSuggestion> {
   ButtonState state = ButtonState.loading;
 
   Map<String, dynamic> output = Map<String, dynamic>.from({});
 
-  void _initialization () async {
-    var collaborativeUrl = 'http://192.168.1.3:5000/recommender/collaborative/' + globals.itemId;
+  void _initialization() async {
+    var collaborativeUrl =
+        'http://localhost:5000/recommender/collaborative/' + globals.itemId;
 
     final response = await http.get(Uri.parse(collaborativeUrl));
-    Map<String, dynamic> data = Map<String, dynamic>.from(jsonDecode(response.body));
+    Map<String, dynamic> data =
+        Map<String, dynamic>.from(jsonDecode(response.body));
 
     setState(() {
       output = data;
@@ -65,69 +67,65 @@ class _CollaborativeRecipeSuggestionState extends State<CollaborativeRecipeSugge
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     final isDone = state == ButtonState.done;
 
     return Scaffold(
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 40.0,
-          ),
-          Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Center(
-                  child: TextButton(
-                    onPressed: (){
-                      Navigator.pop(context);
-                    },
-                    child: Icon(
-                      Icons.arrow_back_rounded,
-                      color: Colors.grey.shade800,
-                      size: 40.0,
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 5,
-                child: Center(
-                  child: Text(
-                    'Some of our related recipes!',
-                    style: TextStyle(
-                        fontSize: 35.0,
-                        fontFamily: 'WorkSans',
-                        color: Colors.blueGrey.shade800
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 100.0,
-          ),
-          Container(
-            margin: const EdgeInsets.only(
-                left: 30.0,
-                right: 30.0
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 40.0,
             ),
-            child:  isDone ? _listOfRecipes() : _loadingPage(),
-          ),
-        ],
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Center(
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.arrow_back_rounded,
+                        color: Colors.grey.shade800,
+                        size: 40.0,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 5,
+                  child: Center(
+                    child: Text(
+                      'Some of our related recipes!',
+                      style: TextStyle(
+                          fontSize: 35.0,
+                          fontFamily: 'WorkSans',
+                          color: Colors.blueGrey.shade800),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 100.0,
+            ),
+            Container(
+              margin: const EdgeInsets.only(left: 30.0, right: 30.0),
+              child: isDone ? _listOfRecipes() : _loadingPage(),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-
-  Widget _loadingPage(){
+  Widget _loadingPage() {
     return Column(
       children: [
-        Container(
+        SizedBox(
           height: 100.0,
           child: DefaultTextStyle(
             style: const TextStyle(
@@ -162,7 +160,7 @@ class _CollaborativeRecipeSuggestionState extends State<CollaborativeRecipeSugge
     );
   }
 
-  Widget _listOfRecipes(){
+  Widget _listOfRecipes() {
     return Column(
       children: [
         const Text(
@@ -183,9 +181,9 @@ class _CollaborativeRecipeSuggestionState extends State<CollaborativeRecipeSugge
     );
   }
 
-  List<Widget> _recipeParser(output){
+  List<Widget> _recipeParser(output) {
     List<Widget> listOfRandomRecipe = [];
-    for (final item in output.keys){
+    for (final item in output.keys) {
       listOfRandomRecipe.add(
         ListTile(
           leading: const Icon(
@@ -205,8 +203,4 @@ class _CollaborativeRecipeSuggestionState extends State<CollaborativeRecipeSugge
     }
     return listOfRandomRecipe;
   }
-
-
 }
-
-

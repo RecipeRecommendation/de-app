@@ -42,7 +42,7 @@ class _RandomRecipeSuggestionPageState extends State<RandomRecipeSuggestionPage>
   Map<String, dynamic> output = Map<String, dynamic>.from({});
 
   void _initialization () async {
-    const API_URL = 'http://192.168.1.3:5000/recommender/random';
+    const API_URL = 'http://127.0.0.1:5000/recommender/random';
 
     final response = await http.get(Uri.parse(API_URL));
     Map<String, dynamic> data = Map<String, dynamic>.from(jsonDecode(response.body));
