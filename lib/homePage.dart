@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 // import 'package:flutter/services.dart';
@@ -37,7 +38,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.grey.shade100,
         body: SingleChildScrollView(
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            // mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
                 width: animationWidth,
@@ -76,6 +77,17 @@ class _HomePageState extends State<HomePage> {
                       repeatForever: true,
                     ),
                   ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 300.0),
+                child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    shape: const StadiumBorder(),
+
+                  ),
+                  onPressed: () => FirebaseAuth.instance.signOut(),
+                  child: Text('Log Out!'),
                 ),
               ),
               Container(

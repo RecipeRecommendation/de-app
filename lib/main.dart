@@ -23,27 +23,15 @@ class MyApp extends StatelessWidget {
               stream: FirebaseAuth.instance.authStateChanges(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return const MediaQuery(
-                      data: MediaQueryData(),
-                      child: HomePage(),
-                      // child: MaterialApp(
-                      //   title: 'Recipe Recommender',
-                      //   home: HomePage(),
-                      // )
+                  return const MaterialApp(
+                    home: HomePage(),
                   );
                   // return const MaterialApp(
                   // title: 'Recipe Recommender',
                   // home: HomePage(),
                   // );
                 } else {
-                  return const MediaQuery(
-                      data: MediaQueryData(),
-                      child: LoginPage(),
-                      // child: MaterialApp(
-                      //   title: 'Recipe Recommender',
-                      //   home: LoginPage(),
-                      // )
-                  );
+                  return const LoginPage();
                   // return const MaterialApp(
                   //   title: 'Recipe Recommender',
                   //   home: LoginPage(),

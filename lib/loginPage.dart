@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:de_app/signUpPage.dart';
 
 enum ButtonState { init, loading, done }
 
@@ -174,7 +175,7 @@ class _MyLoginPageState extends State<LoginPage> {
               height: 100.0,
             ),
             Row(
-              children: const <Widget>[
+              children: <Widget>[
                 Expanded(
                   child: Align(
                     alignment: Alignment.bottomRight,
@@ -187,12 +188,24 @@ class _MyLoginPageState extends State<LoginPage> {
                 Expanded(
                   child: Align(
                     alignment: Alignment.bottomLeft,
-                    child: Text(
-                      ' Sign Up!',
-                      style: TextStyle(
-                        fontSize: 17.0,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF449C69),
+                    child: RawMaterialButton(
+                      onPressed: () {
+                        setState(() {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return SignUpWidget();
+                            },
+                          ),
+                          );
+                        });
+                      },
+                      child: Text(
+                        ' Sign Up!',
+                        style: TextStyle(
+                          fontSize: 17.0,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF449C69),
+                        ),
                       ),
                     ),
                   ),
@@ -242,6 +255,8 @@ class _MyLoginPageState extends State<LoginPage> {
           ),
         ),
       );
+
+
   Future signIn() async {
     setState(() {
       state = ButtonState.loading;
@@ -254,7 +269,9 @@ class _MyLoginPageState extends State<LoginPage> {
     setState(() {
       state = ButtonState.done;
     });
+    await Future.delayed(const Duration(seconds: 2));
   }
+
 
   Widget buildSmallProcessingButton(bool isDone) {
     final color = isDone ? const Color(0xFF449C69) : Colors.deepOrange;
