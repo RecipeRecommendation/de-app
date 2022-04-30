@@ -25,10 +25,12 @@ class MyApp extends StatelessWidget {
                 if (snapshot.hasData) {
                   return const MediaQuery(
                       data: MediaQueryData(),
-                      child: MaterialApp(
-                        title: 'Recipe Recommender',
-                        home: HomePage(),
-                      ));
+                      child: HomePage(),
+                      // child: MaterialApp(
+                      //   title: 'Recipe Recommender',
+                      //   home: HomePage(),
+                      // )
+                  );
                   // return const MaterialApp(
                   // title: 'Recipe Recommender',
                   // home: HomePage(),
@@ -36,10 +38,12 @@ class MyApp extends StatelessWidget {
                 } else {
                   return const MediaQuery(
                       data: MediaQueryData(),
-                      child: MaterialApp(
-                        title: 'Recipe Recommender',
-                        home: LoginPage(),
-                      ));
+                      child: LoginPage(),
+                      // child: MaterialApp(
+                      //   title: 'Recipe Recommender',
+                      //   home: LoginPage(),
+                      // )
+                  );
                   // return const MaterialApp(
                   //   title: 'Recipe Recommender',
                   //   home: LoginPage(),

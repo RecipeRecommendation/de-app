@@ -38,7 +38,7 @@ class _IngredientsPageState extends State<IngredientsPage> {
   Map<String, dynamic> output = Map<String, dynamic>.from({});
 
   void _initialization() async {
-    const API_URL = 'http://localhost:5000/object/detection';
+    const API_URL = 'http://drumal-37010.portmap.io:37010/object/detection';
 
     final response = await http.get(Uri.parse(API_URL));
     Map<String, dynamic> data =
@@ -158,14 +158,14 @@ class _IngredientsPageState extends State<IngredientsPage> {
   Widget _listOfIngredients() {
     return Column(
       children: [
-        const Text(
-          'You have: ',
-          style: TextStyle(
-            fontSize: 43.0,
-            fontFamily: 'WorkSans',
-            color: Color(0xFF04005E),
-          ),
-        ),
+        // const Text(
+        //   'You have: ',
+        //   style: TextStyle(
+        //     fontSize: 43.0,
+        //     fontFamily: 'WorkSans',
+        //     color: Color(0xFF04005E),
+        //   ),
+        // ),
         const SizedBox(
           height: 40.0,
         ),

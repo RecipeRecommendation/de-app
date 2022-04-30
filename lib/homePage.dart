@@ -70,6 +70,7 @@ class _HomePageState extends State<HomePage> {
                         TypewriterAnimatedText(
                           'Recipe Recommender ',
                           speed: const Duration(milliseconds: 100),
+                          textStyle: const TextStyle(fontSize: 42.0),
                         ),
                       ],
                       repeatForever: true,

@@ -35,6 +35,7 @@ class _MyLoginPageState extends State<LoginPage> {
     final isDone = state == ButtonState.done;
 
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[

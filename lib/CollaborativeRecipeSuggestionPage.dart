@@ -42,7 +42,8 @@ class _CollaborativeRecipeSuggestionState
 
   void _initialization() async {
     var collaborativeUrl =
-        'http://localhost:5000/recommender/collaborative/' + globals.itemId;
+        'http://drumal-37010.portmap.io:37010/recommender/collaborative/' +
+            globals.itemId;
 
     final response = await http.get(Uri.parse(collaborativeUrl));
     Map<String, dynamic> data =
@@ -99,7 +100,7 @@ class _CollaborativeRecipeSuggestionState
                   flex: 5,
                   child: Center(
                     child: Text(
-                      'Some of our related recipes!',
+                      'Recommended recipes!',
                       style: TextStyle(
                           fontSize: 35.0,
                           fontFamily: 'WorkSans',
@@ -163,14 +164,14 @@ class _CollaborativeRecipeSuggestionState
   Widget _listOfRecipes() {
     return Column(
       children: [
-        const Text(
-          'You have: ',
-          style: TextStyle(
-            fontSize: 43.0,
-            fontFamily: 'WorkSans',
-            color: Color(0xFF04005E),
-          ),
-        ),
+        // const Text(
+        //   'You have: ',
+        //   style: TextStyle(
+        //     fontSize: 43.0,
+        //     fontFamily: 'WorkSans',
+        //     color: Color(0xFF04005E),
+        //   ),
+        // ),
         const SizedBox(
           height: 40.0,
         ),
