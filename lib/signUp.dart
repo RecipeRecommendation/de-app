@@ -2,20 +2,19 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:de_app/signUp.dart';
 
 enum ButtonState { init, loading, done }
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _MyLoginPageState();
+  State<SignUpPage> createState() => _MySignUpPageState();
 }
 
 // final _auth = FirebaseAuth.instance;
 
-class _MyLoginPageState extends State<LoginPage> {
+class _MySignUpPageState extends State<SignUpPage> {
   bool isAnimating = true;
   ButtonState state = ButtonState.init;
   final emailController = TextEditingController();
@@ -117,7 +116,7 @@ class _MyLoginPageState extends State<LoginPage> {
             ),
             Container(
               margin:
-                  const EdgeInsets.symmetric(horizontal: 35.0, vertical: 1.0),
+              const EdgeInsets.symmetric(horizontal: 35.0, vertical: 1.0),
               child: Container(
                 decoration: BoxDecoration(
                     border: Border.all(),
@@ -145,16 +144,8 @@ class _MyLoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 10.0),
-              child: TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Forgot Password?',
-                  style: TextStyle(
-                      color: Colors.blueGrey.shade600, fontSize: 18.0),
-                ),
-              ),
+            const SizedBox(
+              height: 50.0,
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 36.0),
@@ -164,72 +155,48 @@ class _MyLoginPageState extends State<LoginPage> {
                 curve: Curves.easeIn,
                 width: state == ButtonState.init ? buttonWidth : 70,
                 child: isStretched
-                    ? buildLoginButton()
+                    ? buildSignUpButton()
                     : buildSmallProcessingButton(isDone),
                 onEnd: () => setState(() {
                   isAnimating = !isAnimating;
                 }),
               ),
             ),
-            const SizedBox(
-              height: 100.0,
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                      'New User? ',
-                      style: TextStyle(fontSize: 17.0),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: RawMaterialButton(
-                      onPressed: () {
-                        setState(() {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) {
-                              return SignUpPage();
-                            },
-                          ),
-                          );
-                        });
-                      },
-                      child: Text(
-                        ' Sign Up!',
-                        style: TextStyle(
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF449C69),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            )
           ],
         ),
       ),
     );
   }
 
-  Widget buildLoginButton() => OutlinedButton(
-        onPressed: signIn,
+  Widget buildSignUpButton() => OutlinedButton(
+        onPressed: signIn, //{
+        // setState(() {
+        //   state = ButtonState.loading;
+        // });
+        // await Future.delayed(const Duration(seconds: 3));
+        // setState(() {
+        //   state = ButtonState.done;
+        // });
+        // await Future.delayed(const Duration(seconds: 2));
+        // setState(() {
+        //   Navigator.of(context).push(
+        //     MaterialPageRoute(
+        //       builder: (BuildContext context) {
+        //         return HomePage();
+        //       },
+        //     ),
+        //   );
+        // });
+        // },
         style: OutlinedButton.styleFrom(
             shape: const StadiumBorder(),
             side: const BorderSide(
               width: 2,
               color: Colors.deepOrange,
-            ),
-        ),
+            )),
         child: const FittedBox(
           child: Text(
-            'LOGIN',
+            'SIGN-UP',
             style: TextStyle(
               fontSize: 30.0,
               fontFamily: 'WorkSans',
