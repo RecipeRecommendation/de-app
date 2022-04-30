@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:de_app/loginPage.dart';
 // import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:de_app/authPage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
                   // home: HomePage(),
                   // );
                 } else {
-                  return const LoginPage();
+                  return const AuthPage();
                   // return const MaterialApp(
                   //   title: 'Recipe Recommender',
                   //   home: LoginPage(),

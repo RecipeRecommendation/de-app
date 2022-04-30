@@ -1,7 +1,9 @@
 // import 'package:de_app/homePage.dart';
+import 'package:de_app/loginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 
 enum ButtonState { init, loading, done }
 
@@ -169,25 +171,7 @@ class _MySignUpPageState extends State<SignUpPage> {
   }
 
   Widget buildSignUpButton() => OutlinedButton(
-        onPressed: signIn, //{
-        // setState(() {
-        //   state = ButtonState.loading;
-        // });
-        // await Future.delayed(const Duration(seconds: 3));
-        // setState(() {
-        //   state = ButtonState.done;
-        // });
-        // await Future.delayed(const Duration(seconds: 2));
-        // setState(() {
-        //   Navigator.of(context).push(
-        //     MaterialPageRoute(
-        //       builder: (BuildContext context) {
-        //         return HomePage();
-        //       },
-        //     ),
-        //   );
-        // });
-        // },
+        onPressed: signUp,
         style: OutlinedButton.styleFrom(
             shape: const StadiumBorder(),
             side: const BorderSide(
@@ -207,11 +191,12 @@ class _MySignUpPageState extends State<SignUpPage> {
       );
 
 
-  Future signIn() async {
+  Future signUp() async {
     setState(() {
       state = ButtonState.loading;
     });
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
+
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: emailController.text.trim(),
       password: passwordController.text.trim(),
     );
@@ -220,6 +205,11 @@ class _MySignUpPageState extends State<SignUpPage> {
       state = ButtonState.done;
     });
     await Future.delayed(const Duration(seconds: 2));
+
+    setState(() {
+      Navigator.pop(context);
+    });
+
   }
 
 

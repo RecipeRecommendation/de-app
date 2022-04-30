@@ -84,7 +84,6 @@ class _HomePageState extends State<HomePage> {
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
                     shape: const StadiumBorder(),
-
                   ),
                   onPressed: () => FirebaseAuth.instance.signOut(),
                   child: Text('Log Out!'),
