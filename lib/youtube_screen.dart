@@ -1,7 +1,6 @@
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:flutter/material.dart';
 
-
 //hello
 void main() async {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -15,8 +14,10 @@ void main() async {
 }
 
 class YoutubeScreen extends StatefulWidget {
+  // ignore: use_key_in_widget_constructors
   const YoutubeScreen({required this.title, this.url});
   final String title;
+  // ignore: prefer_typing_uninitialized_variables
   final url;
 
   @override
