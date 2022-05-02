@@ -1,9 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'ingredientsPage.dart';
 import 'package:de_app/RandomRecipeSuggestionPage.dart';
-
 
 // void main() {
 //   runApp(const MyApp());
@@ -31,15 +31,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   Widget build(BuildContext context) {
     final animationWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+        backgroundColor: Colors.grey.shade100,
         body: SingleChildScrollView(
           child: Column(
-            mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
                 width: animationWidth,
@@ -61,10 +59,9 @@ class _HomePageState extends State<HomePage> {
                       pause: const Duration(milliseconds: 500),
                       animatedTexts: [
                         FadeAnimatedText(
-                          'Hello Darshan!',
+                          'Hello Foodies!',
                           textStyle: const TextStyle(
                             fontSize: 45.0,
-
                           ),
                           duration: const Duration(milliseconds: 3000),
                         ),
@@ -78,11 +75,22 @@ class _HomePageState extends State<HomePage> {
                         TypewriterAnimatedText(
                           'Recipe Recommender ',
                           speed: const Duration(milliseconds: 100),
+                          textStyle: const TextStyle(fontSize: 42.0),
                         ),
                       ],
                       repeatForever: true,
                     ),
                   ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 300.0),
+                child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                  ),
+                  onPressed: () => FirebaseAuth.instance.signOut(),
+                  child: Text('Log Out!'),
                 ),
               ),
               Container(
@@ -123,20 +131,19 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-        )
-
-    );
+        ));
   }
 
-  Widget getRecipeCard(){
+  Widget getRecipeCard() {
     return TextButton(
-      onPressed: (){
+      onPressed: () {
         setState(() {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (BuildContext context) {
-              return const RandomRecipeSuggestionPage();
-            },
-          ),
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) {
+                return const RandomRecipeSuggestionPage();
+              },
+            ),
           );
         });
       },
@@ -156,65 +163,49 @@ class _HomePageState extends State<HomePage> {
                   BoxShadow(
                     color: Colors.blueGrey.shade100,
                     blurRadius: 4,
-                    offset: Offset(4,8),
+                    offset: const Offset(4, 8),
                   )
-                ]
-            ),
+                ]),
             // child: Image.asset(
             //   'assets/images/try_new.jpg',
             //   fit: BoxFit.fill,
             // ),
           ),
           Container(
-            margin: const EdgeInsets.only(
-                top: 20.0,
-                left: 20.0
-            ),
+            margin: const EdgeInsets.only(top: 20.0, left: 20.0),
             child: const Text(
               "Cooking, ",
               style: TextStyle(
                   fontSize: 30.0,
                   color: Colors.white,
                   fontFamily: 'Varela',
-                  fontWeight: FontWeight.bold
-              ),
+                  fontWeight: FontWeight.bold),
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(
-                top: 50.0,
-                left: 20.0
-            ),
+            margin: const EdgeInsets.only(top: 50.0, left: 20.0),
             child: const Text(
               "    made easy!",
               style: TextStyle(
                   fontSize: 30.0,
                   color: Colors.white,
                   fontFamily: 'Varela',
-                  fontWeight: FontWeight.bold
-              ),
+                  fontWeight: FontWeight.bold),
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(
-                top: 97.0,
-                left: 20.0
-            ),
+            margin: const EdgeInsets.only(top: 97.0, left: 20.0),
             child: const Text(
               "Get Awesome Recipes!",
               style: TextStyle(
                   fontSize: 20.0,
                   color: Colors.white,
                   fontFamily: 'WorkSans',
-                  fontWeight: FontWeight.normal
-              ),
+                  fontWeight: FontWeight.normal),
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(
-                top: 133.0,
-                left: 20.0
-            ),
+            margin: const EdgeInsets.only(top: 133.0, left: 20.0),
             child: Row(
               children: const [
                 Icon(
@@ -226,10 +217,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Text(
                   '500+ recipes!',
-                  style: TextStyle(
-                      fontSize: 22.0,
-                      color: Colors.white
-                  ),
+                  style: TextStyle(fontSize: 22.0, color: Colors.white),
                 )
               ],
             ),
@@ -239,15 +227,16 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget getIngredientsCard(){
+  Widget getIngredientsCard() {
     return TextButton(
-      onPressed: (){
+      onPressed: () {
         setState(() {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (BuildContext context) {
-              return IngredientsPage();
-            },
-          ),
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) {
+                return const IngredientsPage();
+              },
+            ),
           );
         });
       },
@@ -267,61 +256,45 @@ class _HomePageState extends State<HomePage> {
                   BoxShadow(
                     color: Colors.blueGrey.shade100,
                     blurRadius: 4,
-                    offset: Offset(4,8),
+                    offset: const Offset(4, 8),
                   )
-                ]
-            ),
+                ]),
           ),
           Container(
-            margin: const EdgeInsets.only(
-                top: 20.0,
-                left: 20.0
-            ),
+            margin: const EdgeInsets.only(top: 20.0, left: 20.0),
             child: const Text(
               "Get list of ",
               style: TextStyle(
                   fontSize: 30.0,
                   color: Colors.white,
                   fontFamily: 'Varela',
-                  fontWeight: FontWeight.bold
-              ),
+                  fontWeight: FontWeight.bold),
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(
-                top: 50.0,
-                left: 20.0
-            ),
+            margin: const EdgeInsets.only(top: 50.0, left: 20.0),
             child: const Text(
               "    Ingredients!",
               style: TextStyle(
                   fontSize: 30.0,
                   color: Colors.white,
                   fontFamily: 'Varela',
-                  fontWeight: FontWeight.bold
-              ),
+                  fontWeight: FontWeight.bold),
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(
-                top: 97.0,
-                left: 20.0
-            ),
+            margin: const EdgeInsets.only(top: 97.0, left: 20.0),
             child: const Text(
               "Know your Ingredients!",
               style: TextStyle(
                   fontSize: 20.0,
                   color: Colors.white,
                   fontFamily: 'WorkSans',
-                  fontWeight: FontWeight.normal
-              ),
+                  fontWeight: FontWeight.normal),
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(
-                top: 133.0,
-                left: 20.0
-            ),
+            margin: const EdgeInsets.only(top: 133.0, left: 20.0),
             child: Row(
               children: const [
                 Icon(
@@ -332,11 +305,8 @@ class _HomePageState extends State<HomePage> {
                   width: 10.0,
                 ),
                 Text(
-                  'Any text',
-                  style: TextStyle(
-                      fontSize: 22.0,
-                      color: Colors.white
-                  ),
+                  "Let's find out!",
+                  style: TextStyle(fontSize: 22.0, color: Colors.white),
                 )
               ],
             ),
@@ -346,9 +316,9 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget getSelfOrderCard(){
+  Widget getSelfOrderCard() {
     return TextButton(
-      onPressed: (){},
+      onPressed: () {},
       child: Stack(
         children: [
           Container(
@@ -365,61 +335,45 @@ class _HomePageState extends State<HomePage> {
                   BoxShadow(
                     color: Colors.blueGrey.shade100,
                     blurRadius: 4,
-                    offset: Offset(4,8),
+                    offset: const Offset(4, 8),
                   )
-                ]
-            ),
+                ]),
           ),
           Container(
-            margin: const EdgeInsets.only(
-                top: 20.0,
-                left: 20.0
-            ),
+            margin: const EdgeInsets.only(top: 20.0, left: 20.0),
             child: const Text(
               "Get Groceries, ",
               style: TextStyle(
                   fontSize: 30.0,
                   color: Colors.blueGrey,
                   fontFamily: 'Varela',
-                  fontWeight: FontWeight.bold
-              ),
+                  fontWeight: FontWeight.bold),
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(
-                top: 50.0,
-                left: 20.0
-            ),
+            margin: const EdgeInsets.only(top: 50.0, left: 20.0),
             child: const Text(
               "    at your doorstep!",
               style: TextStyle(
                   fontSize: 30.0,
                   color: Colors.blueGrey,
                   fontFamily: 'Varela',
-                  fontWeight: FontWeight.bold
-              ),
+                  fontWeight: FontWeight.bold),
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(
-                top: 97.0,
-                left: 20.0
-            ),
+            margin: const EdgeInsets.only(top: 97.0, left: 20.0),
             child: const Text(
               "Hassle Free!",
               style: TextStyle(
                   fontSize: 20.0,
                   color: Colors.blueGrey,
                   fontFamily: 'WorkSans',
-                  fontWeight: FontWeight.normal
-              ),
+                  fontWeight: FontWeight.normal),
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(
-                top: 133.0,
-                left: 20.0
-            ),
+            margin: const EdgeInsets.only(top: 133.0, left: 20.0),
             child: Row(
               children: const [
                 Icon(
@@ -431,10 +385,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Text(
                   '500+ orders!',
-                  style: TextStyle(
-                      fontSize: 22.0,
-                      color: Colors.blueGrey
-                  ),
+                  style: TextStyle(fontSize: 22.0, color: Colors.blueGrey),
                 )
               ],
             ),
@@ -443,5 +394,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
 }

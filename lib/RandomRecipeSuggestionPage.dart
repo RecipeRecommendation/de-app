@@ -7,7 +7,6 @@ import 'dart:convert';
 import 'CollaborativeRecipeSuggestionPage.dart';
 import 'package:de_app/globals.dart' as globals;
 
-
 // void main() {
 //   runApp(const MyApp());
 // }
@@ -26,26 +25,28 @@ import 'package:de_app/globals.dart' as globals;
 //   }
 // }
 
-enum ButtonState  {loading, done}
+enum ButtonState { loading, done }
 
 class RandomRecipeSuggestionPage extends StatefulWidget {
   const RandomRecipeSuggestionPage({Key? key}) : super(key: key);
 
   @override
-  State<RandomRecipeSuggestionPage> createState() => _RandomRecipeSuggestionPageState();
+  State<RandomRecipeSuggestionPage> createState() =>
+      _RandomRecipeSuggestionPageState();
 }
 
-class _RandomRecipeSuggestionPageState extends State<RandomRecipeSuggestionPage> {
-
+class _RandomRecipeSuggestionPageState
+    extends State<RandomRecipeSuggestionPage> {
   ButtonState state = ButtonState.loading;
 
   Map<String, dynamic> output = Map<String, dynamic>.from({});
 
-  void _initialization () async {
-    const API_URL = 'http://192.168.1.3:5000/recommender/random';
+  void _initialization() async {
+    const API_URL = 'http://drumal-37010.portmap.io:37010/recommender/random';
 
     final response = await http.get(Uri.parse(API_URL));
-    Map<String, dynamic> data = Map<String, dynamic>.from(jsonDecode(response.body));
+    Map<String, dynamic> data =
+        Map<String, dynamic>.from(jsonDecode(response.body));
 
     setState(() {
       output = data;
@@ -81,7 +82,7 @@ class _RandomRecipeSuggestionPageState extends State<RandomRecipeSuggestionPage>
                 flex: 1,
                 child: Center(
                   child: TextButton(
-                    onPressed: (){
+                    onPressed: () {
                       Navigator.pop(context);
                     },
                     child: Icon(
@@ -96,12 +97,11 @@ class _RandomRecipeSuggestionPageState extends State<RandomRecipeSuggestionPage>
                 flex: 5,
                 child: Center(
                   child: Text(
-                    'Some of our recipes!',
+                    'Delicious, Recipes for you!',
                     style: TextStyle(
                         fontSize: 35.0,
                         fontFamily: 'WorkSans',
-                        color: Colors.blueGrey.shade800
-                    ),
+                        color: Colors.blueGrey.shade800),
                   ),
                 ),
               )
@@ -111,17 +111,15 @@ class _RandomRecipeSuggestionPageState extends State<RandomRecipeSuggestionPage>
             height: 100.0,
           ),
           Container(
-            margin: const EdgeInsets.only(
-                left: 30.0,
-                right: 30.0
-            ),
-            child:  isDone ? _listOfRecipes() : _loadingPage(),
+            margin: const EdgeInsets.only(left: 30.0, right: 30.0),
+            child: isDone ? _listOfRecipes() : _loadingPage(),
           ),
         ],
       ),
     );
   }
-  Widget _loadingPage(){
+
+  Widget _loadingPage() {
     return Column(
       children: [
         Container(
@@ -159,17 +157,17 @@ class _RandomRecipeSuggestionPageState extends State<RandomRecipeSuggestionPage>
     );
   }
 
-  Widget _listOfRecipes(){
+  Widget _listOfRecipes() {
     return Column(
       children: [
-        const Text(
-          'You have: ',
-          style: TextStyle(
-            fontSize: 43.0,
-            fontFamily: 'WorkSans',
-            color: Color(0xFF04005E),
-          ),
-        ),
+        // const Text(
+        //   'You have: ',
+        //   style: TextStyle(
+        //     fontSize: 43.0,
+        //     fontFamily: 'WorkSans',
+        //     color: Color(0xFF04005E),
+        //   ),
+        // ),
         const SizedBox(
           height: 40.0,
         ),
@@ -180,21 +178,20 @@ class _RandomRecipeSuggestionPageState extends State<RandomRecipeSuggestionPage>
     );
   }
 
-  List<Widget> _recipeParser(output){
+  List<Widget> _recipeParser(output) {
     List<Widget> listOfRandomRecipe = [];
-    for (final item in output.keys){
+    for (final item in output.keys) {
       listOfRandomRecipe.add(
         TextButton(
           onPressed: () async {
-
             setState(() {
               globals.itemId = item;
             });
 
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) {
-                  return const CollaborativeRecipeSuggestion();
-                }));
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return const CollaborativeRecipeSuggestion();
+            }));
           },
           child: ListTile(
             leading: const Icon(
@@ -215,5 +212,4 @@ class _RandomRecipeSuggestionPageState extends State<RandomRecipeSuggestionPage>
     }
     return listOfRandomRecipe;
   }
-
 }

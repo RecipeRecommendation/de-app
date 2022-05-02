@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "264561681651",
+    "project_id": "recipe-recommendation-f53b4",
+    "storage_bucket": "recipe-recommendation-f53b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264561681651:android:b74906ca1faf86e2280386",
+        "android_client_info": {
+          "package_name": "org.reciperecommendattion.de_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "264561681651-8hunl41o1bba0ae1vu5ttstdt43hq4ut.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA31kgHE9EG4nQ-iB9TRWZVPXGb7WBZnB0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "264561681651-8hunl41o1bba0ae1vu5ttstdt43hq4ut.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

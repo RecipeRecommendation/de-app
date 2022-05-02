@@ -5,7 +5,6 @@ import 'package:loading_animations/loading_animations.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-
 // void main() {
 //   runApp(const MyApp());
 // }
@@ -24,7 +23,7 @@ import 'dart:convert';
 //   }
 // }
 
-enum ButtonState  {loading, done}
+enum ButtonState { loading, done }
 
 class IngredientsPage extends StatefulWidget {
   const IngredientsPage({Key? key}) : super(key: key);
@@ -34,16 +33,16 @@ class IngredientsPage extends StatefulWidget {
 }
 
 class _IngredientsPageState extends State<IngredientsPage> {
-
   ButtonState state = ButtonState.loading;
 
   Map<String, dynamic> output = Map<String, dynamic>.from({});
 
-  void _initialization () async {
-    const API_URL = 'http://192.168.1.3:5000/object/detection';
+  void _initialization() async {
+    const API_URL = 'http://drumal-37010.portmap.io:37010/object/detection';
 
     final response = await http.get(Uri.parse(API_URL));
-    Map<String, dynamic> data = Map<String, dynamic>.from(jsonDecode(response.body));
+    Map<String, dynamic> data =
+        Map<String, dynamic>.from(jsonDecode(response.body));
 
     setState(() {
       output = data;
@@ -80,7 +79,7 @@ class _IngredientsPageState extends State<IngredientsPage> {
                 flex: 1,
                 child: Center(
                   child: TextButton(
-                    onPressed: (){
+                    onPressed: () {
                       Navigator.pop(context);
                     },
                     child: Icon(
@@ -97,10 +96,9 @@ class _IngredientsPageState extends State<IngredientsPage> {
                   child: Text(
                     'What\'s in fridge ?',
                     style: TextStyle(
-                      fontSize: 35.0,
-                      fontFamily: 'WorkSans',
-                      color: Colors.blueGrey.shade800
-                    ),
+                        fontSize: 35.0,
+                        fontFamily: 'WorkSans',
+                        color: Colors.blueGrey.shade800),
                   ),
                 ),
               )
@@ -110,28 +108,25 @@ class _IngredientsPageState extends State<IngredientsPage> {
             height: 100.0,
           ),
           Container(
-            margin: const EdgeInsets.only(
-              left: 30.0,
-              right: 30.0
-            ),
+            margin: const EdgeInsets.only(left: 30.0, right: 30.0),
             // width: MediaQuery.of(context).size.width,
-            child:  isDone ? _listOfIngredients() : _loadingPage(),
+            child: isDone ? _listOfIngredients() : _loadingPage(),
           )
         ],
       ),
     );
   }
 
-  Widget _loadingPage(){
+  Widget _loadingPage() {
     return Column(
       children: [
-        Container(
+        SizedBox(
           height: 100.0,
           child: DefaultTextStyle(
             style: const TextStyle(
               fontSize: 43.0,
               fontFamily: 'WorkSans',
-              color: const Color(0xFF04005E),
+              color: Color(0xFF04005E),
             ),
             child: AnimatedTextKit(
               pause: const Duration(milliseconds: 500),
@@ -160,18 +155,17 @@ class _IngredientsPageState extends State<IngredientsPage> {
     );
   }
 
-  Widget _listOfIngredients(){
-
+  Widget _listOfIngredients() {
     return Column(
       children: [
-        const Text(
-          'You have: ',
-          style: TextStyle(
-            fontSize: 43.0,
-            fontFamily: 'WorkSans',
-            color: Color(0xFF04005E),
-          ),
-        ),
+        // const Text(
+        //   'You have: ',
+        //   style: TextStyle(
+        //     fontSize: 43.0,
+        //     fontFamily: 'WorkSans',
+        //     color: Color(0xFF04005E),
+        //   ),
+        // ),
         const SizedBox(
           height: 40.0,
         ),
@@ -182,9 +176,9 @@ class _IngredientsPageState extends State<IngredientsPage> {
     );
   }
 
-  List<Widget> ingredientsParser(output){
+  List<Widget> ingredientsParser(output) {
     List<Widget> listOfIngredients = [];
-    for (final item in output.keys){
+    for (final item in output.keys) {
       listOfIngredients.add(
         ListTile(
           leading: const Icon(
@@ -204,5 +198,4 @@ class _IngredientsPageState extends State<IngredientsPage> {
     }
     return listOfIngredients;
   }
-
 }
