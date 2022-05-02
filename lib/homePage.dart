@@ -38,7 +38,6 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.grey.shade100,
         body: SingleChildScrollView(
           child: Column(
-            // mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
                 width: animationWidth,
@@ -46,7 +45,10 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   // alignment: Alignment.center,
                   margin: const EdgeInsets.only(
-                      top: 100.0, left: 30.0, right: 30.0),
+                    top: 100.0,
+                    left: 30.0,
+                    right: 30.0
+                  ),
                   child: DefaultTextStyle(
                     style: TextStyle(
                       fontSize: 43.0,
@@ -65,7 +67,9 @@ class _HomePageState extends State<HomePage> {
                         ),
                         FadeAnimatedText(
                           'Welcome To..',
-                          textStyle: const TextStyle(fontSize: 37.0),
+                          textStyle: const TextStyle(
+                            fontSize: 37.0
+                          ),
                           duration: const Duration(milliseconds: 2000),
                         ),
                         TypewriterAnimatedText(
