@@ -176,7 +176,7 @@ class _MyLoginPageState extends State<LoginPage> {
             ),
             Row(
               children: <Widget>[
-                Expanded(
+                const Expanded(
                   child: Align(
                     alignment: Alignment.bottomRight,
                     child: Text(
@@ -191,15 +191,16 @@ class _MyLoginPageState extends State<LoginPage> {
                     child: RawMaterialButton(
                       onPressed: () {
                         setState(() {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) {
-                              return SignUpPage();
-                            },
-                          ),
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (BuildContext context) {
+                                return SignUpPage();
+                              },
+                            ),
                           );
                         });
                       },
-                      child: Text(
+                      child: const Text(
                         ' Sign Up!',
                         style: TextStyle(
                           fontSize: 17.0,
@@ -221,11 +222,11 @@ class _MyLoginPageState extends State<LoginPage> {
   Widget buildLoginButton() => OutlinedButton(
         onPressed: signIn,
         style: OutlinedButton.styleFrom(
-            shape: const StadiumBorder(),
-            side: const BorderSide(
-              width: 2,
-              color: Colors.deepOrange,
-            ),
+          shape: const StadiumBorder(),
+          side: const BorderSide(
+            width: 2,
+            color: Colors.deepOrange,
+          ),
         ),
         child: const FittedBox(
           child: Text(
@@ -238,7 +239,6 @@ class _MyLoginPageState extends State<LoginPage> {
           ),
         ),
       );
-
 
   Future signIn() async {
     setState(() {
@@ -254,7 +254,6 @@ class _MyLoginPageState extends State<LoginPage> {
     });
     await Future.delayed(const Duration(seconds: 2));
   }
-
 
   Widget buildSmallProcessingButton(bool isDone) {
     final color = isDone ? const Color(0xFF449C69) : Colors.deepOrange;
