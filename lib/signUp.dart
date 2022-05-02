@@ -1,8 +1,6 @@
-// import 'package:de_app/homePage.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 
 enum ButtonState { init, loading, done }
 
@@ -117,7 +115,7 @@ class _MySignUpPageState extends State<SignUpPage> {
             ),
             Container(
               margin:
-              const EdgeInsets.symmetric(horizontal: 35.0, vertical: 1.0),
+                  const EdgeInsets.symmetric(horizontal: 35.0, vertical: 1.0),
               child: Container(
                 decoration: BoxDecoration(
                     border: Border.all(),
@@ -189,7 +187,6 @@ class _MySignUpPageState extends State<SignUpPage> {
         ),
       );
 
-
   Future signUp() async {
     setState(() {
       state = ButtonState.loading;
@@ -208,9 +205,7 @@ class _MySignUpPageState extends State<SignUpPage> {
     setState(() {
       Navigator.pop(context);
     });
-
   }
-
 
   Widget buildSmallProcessingButton(bool isDone) {
     final color = isDone ? const Color(0xFF449C69) : Colors.deepOrange;
@@ -234,10 +229,3 @@ class _MySignUpPageState extends State<SignUpPage> {
     );
   }
 }
-
-// Future signIn() async {
-//   await FirebaseAuth.instance.signInWithEmailAndPassword(
-//     email: emailController.text.trim(),
-//     password: passwordController.text.trim(),
-//   );
-// }

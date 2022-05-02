@@ -1,29 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter/services.dart';
 import 'package:loading_animations/loading_animations.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'CollaborativeRecipeSuggestionPage.dart';
 import 'package:de_app/globals.dart' as globals;
-
-// void main() {
-//   runApp(const MyApp());
-// }
-//
-// class MyApp extends StatelessWidget {
-//   const MyApp({Key? key}) : super(key: key);
-//
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-//     return const MaterialApp(
-//       title: 'Recipe Recommender',
-//       home: RandomRecipeSuggestionPage(),
-//     );
-//   }
-// }
 
 enum ButtonState { loading, done }
 
@@ -160,14 +141,6 @@ class _RandomRecipeSuggestionPageState
   Widget _listOfRecipes() {
     return Column(
       children: [
-        // const Text(
-        //   'You have: ',
-        //   style: TextStyle(
-        //     fontSize: 43.0,
-        //     fontFamily: 'WorkSans',
-        //     color: Color(0xFF04005E),
-        //   ),
-        // ),
         const SizedBox(
           height: 40.0,
         ),

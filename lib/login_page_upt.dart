@@ -3,18 +3,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:de_app/signUp.dart';
 
-void main(){
-  runApp(
-      const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: LoginPage(),
-      )
-  );
-}
-
 class LoginPage extends StatefulWidget {
-
-
   const LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -22,7 +11,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   bool isAnimating = true;
   ButtonState state = ButtonState.init;
   final emailController = TextEditingController();
@@ -38,7 +26,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-
     final buttonWidth = MediaQuery.of(context).size.width;
     final isStretched = isAnimating || state == ButtonState.init;
     final isDone = state == ButtonState.done;
@@ -87,10 +74,12 @@ class _LoginPageState extends State<LoginPage> {
                                 repeatForever: true,
                                 animatedTexts: [
                                   RotateAnimatedText('नमस्ते',
-                                      textStyle: const TextStyle(fontSize: 50.0)),
+                                      textStyle:
+                                          const TextStyle(fontSize: 50.0)),
                                   RotateAnimatedText('Welcome'),
                                   RotateAnimatedText('શુભેચ્છા',
-                                      textStyle: const TextStyle(fontSize: 50.0)),
+                                      textStyle:
+                                          const TextStyle(fontSize: 50.0)),
                                 ],
                               ),
                             ),
@@ -103,8 +92,8 @@ class _LoginPageState extends State<LoginPage> {
                       child: Column(
                         children: [
                           Container(
-                            margin:
-                            const EdgeInsets.symmetric(horizontal: 35.0, vertical: 10.0),
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 35.0, vertical: 10.0),
                             child: Container(
                               decoration: BoxDecoration(
                                   border: Border.all(),
@@ -136,15 +125,16 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           Container(
-                            margin:
-                            const EdgeInsets.symmetric(horizontal: 35.0, vertical: 1.0),
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 35.0, vertical: 1.0),
                             child: Container(
                               decoration: BoxDecoration(
                                   border: Border.all(),
                                   borderRadius: BorderRadius.circular(10.0)),
                               child: ListTile(
                                 leading: Container(
-                                  margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 5.0),
                                   child: Icon(
                                     Icons.password_rounded,
                                     color: Colors.blueGrey.shade800,
@@ -187,7 +177,8 @@ class _LoginPageState extends State<LoginPage> {
                           child: Text(
                             'New User? Sign Up!',
                             style: TextStyle(
-                                color: Colors.blueGrey.shade600, fontSize: 18.0),
+                                color: Colors.blueGrey.shade600,
+                                fontSize: 18.0),
                           ),
                         ),
                       ),
@@ -210,7 +201,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-
                   ],
                 ),
               ),
@@ -222,25 +212,25 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget buildLoginButton() => OutlinedButton(
-    onPressed: signIn,
-    style: OutlinedButton.styleFrom(
-      shape: const StadiumBorder(),
-      side: const BorderSide(
-        width: 2,
-        color: Colors.deepOrange,
-      ),
-    ),
-    child: const FittedBox(
-      child: Text(
-        'LOGIN',
-        style: TextStyle(
-          fontSize: 30.0,
-          fontFamily: 'WorkSans',
-          color: Colors.deepOrange,
+        onPressed: signIn,
+        style: OutlinedButton.styleFrom(
+          shape: const StadiumBorder(),
+          side: const BorderSide(
+            width: 2,
+            color: Colors.deepOrange,
+          ),
         ),
-      ),
-    ),
-  );
+        child: const FittedBox(
+          child: Text(
+            'LOGIN',
+            style: TextStyle(
+              fontSize: 30.0,
+              fontFamily: 'WorkSans',
+              color: Colors.deepOrange,
+            ),
+          ),
+        ),
+      );
 
   Future signIn() async {
     setState(() {
@@ -267,15 +257,14 @@ class _LoginPageState extends State<LoginPage> {
       child: Center(
         child: isDone
             ? const Icon(
-          Icons.done,
-          size: 52,
-          color: Colors.white,
-        )
+                Icons.done,
+                size: 52,
+                color: Colors.white,
+              )
             : const CircularProgressIndicator(
-          color: Colors.white,
-        ),
+                color: Colors.white,
+              ),
       ),
     );
   }
-
 }
