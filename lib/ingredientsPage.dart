@@ -1,27 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter/services.dart';
 import 'package:loading_animations/loading_animations.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
-// void main() {
-//   runApp(const MyApp());
-// }
-//
-// class MyApp extends StatelessWidget {
-//   const MyApp({Key? key}) : super(key: key);
-//
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-//     return const MaterialApp(
-//       title: 'Recipe Recommender',
-//       home: IngredientsPage(),
-//     );
-//   }
-// }
 
 enum ButtonState { loading, done }
 
@@ -38,6 +19,7 @@ class _IngredientsPageState extends State<IngredientsPage> {
   Map<String, dynamic> output = Map<String, dynamic>.from({});
 
   void _initialization() async {
+    // ignore: constant_identifier_names
     const API_URL = 'http://drumal-37010.portmap.io:37010/object/detection';
 
     final response = await http.get(Uri.parse(API_URL));
@@ -46,6 +28,7 @@ class _IngredientsPageState extends State<IngredientsPage> {
 
     setState(() {
       output = data;
+      // ignore: avoid_print
       print(output[output.keys.elementAt(0)]);
     });
 
@@ -53,6 +36,7 @@ class _IngredientsPageState extends State<IngredientsPage> {
 
     setState(() {
       state = ButtonState.done;
+      // ignore: avoid_print
       print('done');
     });
   }
@@ -60,6 +44,7 @@ class _IngredientsPageState extends State<IngredientsPage> {
   @override
   void initState() {
     _initialization();
+    // ignore: todo
     // TODO: implement initState
     super.initState();
   }
@@ -158,14 +143,6 @@ class _IngredientsPageState extends State<IngredientsPage> {
   Widget _listOfIngredients() {
     return Column(
       children: [
-        // const Text(
-        //   'You have: ',
-        //   style: TextStyle(
-        //     fontSize: 43.0,
-        //     fontFamily: 'WorkSans',
-        //     color: Color(0xFF04005E),
-        //   ),
-        // ),
         const SizedBox(
           height: 40.0,
         ),

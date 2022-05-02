@@ -1,27 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-// import 'package:flutter/services.dart';
 import 'ingredientsPage.dart';
 import 'package:de_app/RandomRecipeSuggestionPage.dart';
-
-// void main() {
-//   runApp(const MyApp());
-// }
-//
-// class MyApp extends StatelessWidget {
-//   const MyApp({Key? key}) : super(key: key);
-//
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-//     return const MaterialApp(
-//       title: 'Recipe Recommender',
-//       home: HomePage(),
-//     );
-//   }
-// }
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -45,10 +26,7 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   // alignment: Alignment.center,
                   margin: const EdgeInsets.only(
-                    top: 100.0,
-                    left: 30.0,
-                    right: 30.0
-                  ),
+                      top: 100.0, left: 30.0, right: 30.0),
                   child: DefaultTextStyle(
                     style: TextStyle(
                       fontSize: 43.0,
@@ -67,9 +45,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         FadeAnimatedText(
                           'Welcome To..',
-                          textStyle: const TextStyle(
-                            fontSize: 37.0
-                          ),
+                          textStyle: const TextStyle(fontSize: 37.0),
                           duration: const Duration(milliseconds: 2000),
                         ),
                         TypewriterAnimatedText(
@@ -84,13 +60,13 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(left: 300.0),
+                padding: const EdgeInsets.only(left: 300.0),
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
                     shape: const StadiumBorder(),
                   ),
                   onPressed: () => FirebaseAuth.instance.signOut(),
-                  child: Text('Log Out!'),
+                  child: const Text('Log Out!'),
                 ),
               ),
               Container(
@@ -166,10 +142,6 @@ class _HomePageState extends State<HomePage> {
                     offset: const Offset(4, 8),
                   )
                 ]),
-            // child: Image.asset(
-            //   'assets/images/try_new.jpg',
-            //   fit: BoxFit.fill,
-            // ),
           ),
           Container(
             margin: const EdgeInsets.only(top: 20.0, left: 20.0),

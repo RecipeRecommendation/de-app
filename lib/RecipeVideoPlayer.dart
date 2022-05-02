@@ -7,7 +7,6 @@ void main() async {
   // await Firebase.initializeApp();
   runApp(const MaterialApp(
     home: YoutubeScreen(
-      title: 'abc',
       url: 'https://www.youtube.com/watch?v=GQyWIur03aw&t=6s',
     ),
   ));
@@ -15,8 +14,7 @@ void main() async {
 
 class YoutubeScreen extends StatefulWidget {
   // ignore: use_key_in_widget_constructors
-  const YoutubeScreen({required this.title, this.url});
-  final String title;
+  const YoutubeScreen({this.url});
   // ignore: prefer_typing_uninitialized_variables
   final url;
 

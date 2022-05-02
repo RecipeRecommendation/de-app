@@ -1,28 +1,10 @@
+import 'package:de_app/RecipeVideoPlayer.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter/services.dart';
 import 'package:loading_animations/loading_animations.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:de_app/globals.dart' as globals;
-
-// void main() {
-//   runApp(const MyApp());
-// }
-//
-// class MyApp extends StatelessWidget {
-//   const MyApp({Key? key}) : super(key: key);
-//
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-//     return const MaterialApp(
-//       title: 'Recipe Recommender',
-//       home: CollaborativeRecipeSuggestion(),
-//     );
-//   }
-// }
 
 class CollaborativeRecipeSuggestion extends StatefulWidget {
   const CollaborativeRecipeSuggestion({Key? key}) : super(key: key);
@@ -164,14 +146,6 @@ class _CollaborativeRecipeSuggestionState
   Widget _listOfRecipes() {
     return Column(
       children: [
-        // const Text(
-        //   'You have: ',
-        //   style: TextStyle(
-        //     fontSize: 43.0,
-        //     fontFamily: 'WorkSans',
-        //     color: Color(0xFF04005E),
-        //   ),
-        // ),
         const SizedBox(
           height: 40.0,
         ),
@@ -186,17 +160,36 @@ class _CollaborativeRecipeSuggestionState
     List<Widget> listOfRandomRecipe = [];
     for (final item in output.keys) {
       listOfRandomRecipe.add(
-        ListTile(
-          leading: const Icon(
-            Icons.emoji_food_beverage_sharp,
-            color: Color(0xFF04005E),
-          ),
-          title: Text(
-            output[item].toString(),
-            style: const TextStyle(
-              fontSize: 25.0,
-              fontFamily: 'WorkSans',
+        TextButton(
+          onPressed: () async {
+
+            var API_URL = 'http://drumal-37010.portmap.io:37010/youtube/'+ output[item].toString();
+            final response = await http.get(Uri.parse(API_URL));
+            Map<String, dynamic> data = Map<String, dynamic>.from(jsonDecode(response.body));
+
+            setState(() {
+              output = data;
+            });
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return YoutubeScreen(
+                url: output['link'],
+              );
+            }));
+
+          },
+          child: ListTile(
+            leading: const Icon(
+              Icons.emoji_food_beverage_sharp,
               color: Color(0xFF04005E),
+            ),
+            title: Text(
+              output[item].toString(),
+              style: const TextStyle(
+                fontSize: 25.0,
+                fontFamily: 'WorkSans',
+                color: Color(0xFF04005E),
+              ),
             ),
           ),
         ),
