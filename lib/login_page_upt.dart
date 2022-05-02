@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:de_app/signUp.dart';
-import 'package:sizer/sizer.dart';
 
 void main(){
   runApp(
@@ -37,9 +36,6 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
 
@@ -57,16 +53,13 @@ class _LoginPageState extends State<LoginPage> {
           ),
           child: Column(
             children: [
-              RawMaterialButton(
-                onPressed: () => print(MediaQuery.of(context).viewInsets.bottom.toString()),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(35),
-                  child: SizedBox.fromSize(
-                    child: Image.asset(
-                      "assets/images/loginImage.jpg",
-                      alignment: Alignment.center,
-                      fit: BoxFit.fill,
-                    ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(35),
+                child: SizedBox.fromSize(
+                  child: Image.asset(
+                    "assets/images/loginImage.jpg",
+                    alignment: Alignment.center,
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
@@ -106,6 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     Flexible(
+                      flex: 1,
                       child: Column(
                         children: [
                           Container(
@@ -173,10 +167,53 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ],
                       ),
-                    )
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 5.0),
+                        child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) {
+                                    return SignUpPage();
+                                  },
+                                ),
+                              );
+                            });
+                          },
+                          child: Text(
+                            'New User? Sign Up!',
+                            style: TextStyle(
+                                color: Colors.blueGrey.shade600, fontSize: 18.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 36.0),
+                        child: AnimatedContainer(
+                          height: 65,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeIn,
+                          width: state == ButtonState.init ? buttonWidth : 70,
+                          child: isStretched
+                              ? buildLoginButton()
+                              : buildSmallProcessingButton(isDone),
+                          onEnd: () => setState(() {
+                            isAnimating = !isAnimating;
+                          }),
+                        ),
+                      ),
+                    ),
+
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -213,7 +250,6 @@ class _LoginPageState extends State<LoginPage> {
       email: emailController.text.trim(),
       password: passwordController.text.trim(),
     );
-    await Future.delayed(const Duration(seconds: 3));
     setState(() {
       state = ButtonState.done;
     });

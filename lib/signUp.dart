@@ -1,5 +1,4 @@
 // import 'package:de_app/homePage.dart';
-import 'package:de_app/loginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';

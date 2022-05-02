@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'loginPage.dart';
+import 'package:de_app/login_page_upt.dart';
 import 'signUp.dart';
 
 class AuthPage extends StatefulWidget {
@@ -12,5 +12,5 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   bool isLogin = true;
   @override
-  Widget build(BuildContext context) => isLogin ? LoginPage() : SignUpPage();
+  Widget build(BuildContext context) => isLogin ? const LoginPage() : const SignUpPage();
 }
