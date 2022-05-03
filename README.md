@@ -1,6 +1,3 @@
 # de_app
 
-// TODO: Add firebase integration to login module.
-
-
-// TODO: Integrate self_order module
+This repository contains the app of Reciepe Recommendation System run main.dart file to run this app. 
