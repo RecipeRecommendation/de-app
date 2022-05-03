@@ -52,50 +52,52 @@ class _RandomRecipeSuggestionPageState
   Widget build(BuildContext context) {
     final isDone = state == ButtonState.done;
     return Scaffold(
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 40.0,
-          ),
-          Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Center(
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(
-                      Icons.arrow_back_rounded,
-                      color: Colors.grey.shade800,
-                      size: 40.0,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 40.0,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Center(
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.arrow_back_rounded,
+                        color: Colors.grey.shade800,
+                        size: 40.0,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 5,
-                child: Center(
-                  child: Text(
-                    'Delicious, Recipes for you!',
-                    style: TextStyle(
-                        fontSize: 35.0,
-                        fontFamily: 'WorkSans',
-                        color: Colors.blueGrey.shade800),
+                Expanded(
+                  flex: 5,
+                  child: Center(
+                    child: Text(
+                      'Delicious, Recipes for you!',
+                      style: TextStyle(
+                          fontSize: 35.0,
+                          fontFamily: 'WorkSans',
+                          color: Colors.blueGrey.shade800),
+                    ),
                   ),
-                ),
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 100.0,
-          ),
-          Container(
-            margin: const EdgeInsets.only(left: 30.0, right: 30.0),
-            child: isDone ? _listOfRecipes() : _loadingPage(),
-          ),
-        ],
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 100.0,
+            ),
+            Container(
+              margin: const EdgeInsets.only(left: 30.0, right: 30.0),
+              child: isDone ? _listOfRecipes() : _loadingPage(),
+            ),
+          ],
+        ),
       ),
     );
   }

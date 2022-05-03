@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 
 //hello
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
   runApp(const MaterialApp(
     home: YoutubeScreen(
       title: 'abc',
@@ -31,9 +29,9 @@ class _YoutubeScreenState extends State<YoutubeScreen> {
     _controller = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(widget.url)!,
       flags: const YoutubePlayerFlags(
-        autoPlay: false,
         isLive: false,
         enableCaption: false,
+        loop: true,
       ),
     );
   }
@@ -59,15 +57,64 @@ class _YoutubeScreenState extends State<YoutubeScreen> {
   @override
   Widget build(BuildContext context) {
     return YoutubePlayerBuilder(
-      player: YoutubePlayer(controller: _controller!),
+      player: YoutubePlayer(
+        controller: _controller!
+      ),
       builder: (context, player) {
         return Scaffold(
           backgroundColor: Colors.grey.shade100,
-          body: ListView(
-            children: [
-              player,
-            ],
-          ),
+          body: SingleChildScrollView(
+           child: Column(
+             children: [
+               const SizedBox(
+                 height: 40.0,
+               ),
+               Row(
+                 children: [
+                   Expanded(
+                     flex: 1,
+                     child: Center(
+                       child: TextButton(
+                         onPressed: () {
+                           Navigator.pop(context);
+                         },
+                         child: Icon(
+                           Icons.arrow_back_rounded,
+                           color: Colors.grey.shade800,
+                           size: 40.0,
+                         ),
+                       ),
+                     ),
+                   ),
+                   Expanded(
+                     flex: 5,
+                     child: Padding(
+                       padding: const EdgeInsets.only(
+                         right: 50.0,
+                       ),
+                       child: Center(
+                         child: Text(
+                           'Recipe Video!',
+                           style: TextStyle(
+                               fontSize: 35.0,
+                               fontFamily: 'WorkSans',
+                               color: Colors.blueGrey.shade800),
+                         ),
+                       ),
+                     ),
+                   )
+                 ],
+               ),
+               const SizedBox(
+                 height: 100.0,
+               ),
+               Container(
+                 margin: EdgeInsets.all(15.0),
+                 child: player,
+               )
+             ],
+           ),
+          )
         );
       },
     );
